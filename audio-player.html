@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>HTML5 Audio Player</title>
+        <meta charset="utf-8" />
+        <style>
+        div {margin:10px;}
+        </style>
+        <script src="player.js"></script>
+        <script>
+        </script>
+    </head>
+    <body>
+        <p id="song_name"></p>
+        <audio controls="controls" id="play_song">
+            Your browser does not support the <a href="http://caniuse.com/#search=audio"><code>audio</code></a> element.
+        </audio>
+        <div>
+            <button id="prev_song">Play prev song</button>
+            <button id="next_song">Play next song</button>
+        </div>
+        <select id="playlist"> </select>
+    </body>
+</html>  
