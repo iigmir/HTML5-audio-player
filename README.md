@@ -1,6 +1,6 @@
 # HTML5-audio-player
 Play music in browser with playlist.
-Handle audio files copyright by yourself.
+Handle audio files' copyright issue by yourself.
 
 # How to add song
 song_list in player.js likes playlist in player software.
