@@ -28,6 +28,7 @@ window.onload = function()
     var prev_song_js = document.getElementById("prev_song");
     var next_song_js = document.getElementById("next_song");
     var play_song_js = document.getElementById("play_song");
+    var rand_song_js = document.getElementById("rand_song");
     
     /* Load first song */
     play_song_js.src       = song_list[0][0];
@@ -46,19 +47,26 @@ window.onload = function()
     }
     
     prev_song_js.onclick = function()
-    {   // press prev song button
+    {   // prev song method
         if ( song_pos==0 ) { song_list.length-1; }
         else { song_pos -= 1; }
         change_song();
     }
     next_song_js.onclick = function()
-    {   // press next song button
+    {   // next song method
         if ( song_pos==song_list.length-1 ) { song_pos = 0; }
         else { song_pos += 1; }
         change_song();
     }
+    rand_song_js.onclick = function()
+    {   // random song method
+        var rand_num = Math.round( Math.random() * (song_list.length-1) );
+        while( song_pos == rand_num ) { rand_num = Math.round( Math.random() * (song_list.length-1) ); }
+        song_pos = rand_num;
+        change_song();
+    }
     play_song_js.onended = function()
-    {   // if song ends, play next song. same as "next_song_js.onclick" event.
+    {   // same as "next_song_js.onclick" event.
         if ( song_pos==song_list.length-1 ) { song_pos = 0; }
         else { song_pos += 1; }
         change_song();
