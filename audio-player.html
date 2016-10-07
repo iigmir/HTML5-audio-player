@@ -18,7 +18,13 @@
         <div>
             <button id="prev_song">Play prev song</button>
             <button id="next_song">Play next song</button>
-            <button id="rand_song">Play random song</button>
+            <button id="rand_song">Shuffle song</button>
+        </div>
+        <div>
+            What player should do when player end the song? <br />
+            <label for="repeat">Play next Song</label> <input type="radio" name="end_song_behavior" value="repeat" checked> <br />
+            <label for="next">Repeat Song</label> <input type="radio" name="end_song_behavior" value="next" > <br />
+            <label for="shuffle">Shuffle Song</label> <input type="radio" name="end_song_behavior" value="shuffle">
         </div>
         <select id="playlist"> </select>
     </body>

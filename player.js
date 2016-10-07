@@ -29,6 +29,7 @@ window.onload = function()
     var next_song_js = document.getElementById("next_song");
     var play_song_js = document.getElementById("play_song");
     var rand_song_js = document.getElementById("rand_song");
+    var end_song_behavior_js = document.getElementsByName("end_song_behavior");
     
     /* Load first song */
     play_song_js.src       = song_list[0][0];
@@ -36,7 +37,7 @@ window.onload = function()
     song_name_js.innerHTML = song_list[0][1];
     play_song_js.play();
     
-    /* control Part */
+    /* song change action */
     function change_song()
     {   // reset, and play song
         play_song_js.src   = song_list[song_pos][0];
@@ -45,7 +46,15 @@ window.onload = function()
         play_song_js.play();
         song_name_js.innerHTML = play_song_js.getAttribute("title");
     }
+    function shuffle_song()
+    {   // generate num whiich not same as playing track, then switch
+        var rand_num = Math.round( Math.random() * (song_list.length-1) );
+        while( song_pos == rand_num ) { rand_num = Math.round( Math.random() * (song_list.length-1) ); }
+        song_pos = rand_num;
+        change_song();
+    }
     
+    /* player control part */
     prev_song_js.onclick = function()
     {   // prev song method
         if ( song_pos==0 ) { song_list.length-1; }
@@ -58,18 +67,24 @@ window.onload = function()
         else { song_pos += 1; }
         change_song();
     }
-    rand_song_js.onclick = function()
-    {   // random song method
-        var rand_num = Math.round( Math.random() * (song_list.length-1) );
-        while( song_pos == rand_num ) { rand_num = Math.round( Math.random() * (song_list.length-1) ); }
-        song_pos = rand_num;
-        change_song();
-    }
+    rand_song_js.onclick = function() { shuffle_song(); }
     play_song_js.onended = function()
-    {   // same as "next_song_js.onclick" event.
-        if ( song_pos==song_list.length-1 ) { song_pos = 0; }
-        else { song_pos += 1; }
-        change_song();
+    {   // do what radio checked
+        if( end_song_behavior_js[1].checked == true )
+        {   // repeat
+            play_song_js.currentTime = 0;
+            play_song_js.play();
+        }
+        else if( end_song_behavior_js[2].checked == true )
+        {   // shuffle
+            shuffle_song();
+        }
+        else
+        {   // next, defaulr
+            if ( song_pos==song_list.length-1 ) { song_pos = 0; }
+            else { song_pos += 1; }
+            change_song();
+        }
     }
     playlist.onchange = function()
     {   // if click list, play selected song
