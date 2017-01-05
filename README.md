@@ -10,4 +10,4 @@ Name of audio file should in second element of array.
 Example: ["https://www.example.com/foobar.mp3" , "Foobar music"]
 
 ## I want to play song by myself, not by my browser
-Delete "play_song_js.play();" in player.js.
+Delete "play_song_js.play();" at /* Load first song */ part in player.js.
